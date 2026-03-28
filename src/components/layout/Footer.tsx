@@ -1,59 +1,60 @@
 import { SectionContainer } from "@/components/ui/SectionContainer";
+import type { TranslateFn } from "@/lib/i18n/get-dictionary";
 
-const pageLinks = ["Home", "About", "Services", "Pricing", "Team", "Contact", "Blog"];
+const pageKeys = [
+  "footer.pageHome",
+  "footer.pageAbout",
+  "footer.pageServices",
+  "footer.pagePricing",
+  "footer.pageContact",
+] as const;
 
-export function Footer() {
+export function Footer({ t }: { t: TranslateFn }) {
   return (
-    <footer className="border-t border-zinc-200 bg-zinc-50 py-16">
-      <SectionContainer className="space-y-10">
-        <div className="grid gap-10 md:grid-cols-4">
+    <footer className="border-t border-zinc-200 bg-zinc-50 py-20">
+      <SectionContainer className="space-y-8">
+        <div className="grid gap-8 md:grid-cols-4">
           <div className="space-y-3">
             <p className="text-lg font-semibold tracking-tight text-zinc-900">
-              Amber Dental
+              {t("footer.brand")}
             </p>
             <p className="text-sm leading-6 text-zinc-600">
-              Personalized dental care with modern diagnostics and a calm
-              clinic environment.
+              {t("footer.tagline")}
             </p>
           </div>
 
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
-              Pages
+              {t("footer.contentsTitle")}
             </p>
             <ul className="grid grid-cols-2 gap-y-2 text-sm text-zinc-700">
-              {pageLinks.map((link) => (
-                <li key={link}>{link}</li>
+              {pageKeys.map((key) => (
+                <li key={key}>{t(key)}</li>
               ))}
             </ul>
           </div>
 
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
-              Contact
+              {t("footer.contactHeading")}
             </p>
-            <p className="text-sm text-zinc-700">hello@amberdental.com</p>
-            <p className="text-sm text-zinc-700">+1 (800) 234-8891</p>
-            <p className="text-sm text-zinc-700">
-              123 Care Avenue, Suite 200, New York
+            <p className="break-words text-sm text-zinc-700">
+              {t("footer.emailsLine")}
             </p>
+            <p className="text-sm text-zinc-700">{t("footer.phone")}</p>
+            <p className="text-sm text-zinc-700">{t("footer.address")}</p>
           </div>
 
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
-              Newsletter
+              {t("footer.thanksTitle")}
             </p>
-            <p className="text-sm text-zinc-700">
-              Join our monthly oral-health tips and clinic updates.
-            </p>
-            <button className="rounded-full border border-zinc-900 bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(24,24,27,0.12)]">
-              Subscribe
-            </button>
+            <p className="text-sm text-zinc-700">{t("footer.thanksSubtitle")}</p>
           </div>
         </div>
 
-        <div className="border-t border-zinc-200 pt-5 text-sm text-zinc-500">
-          <p>2026 Amber Dental. All rights reserved.</p>
+        <div className="border-t border-zinc-200 pt-4 text-sm text-zinc-500">
+          <p>{t("footer.copyright")}</p>
         </div>
       </SectionContainer>
     </footer>

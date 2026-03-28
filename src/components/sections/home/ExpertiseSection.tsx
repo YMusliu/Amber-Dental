@@ -1,39 +1,35 @@
 import { SectionContainer } from "@/components/ui/SectionContainer";
+import type { TranslateFn } from "@/lib/i18n/get-dictionary";
 
-const benefits = [
-  { title: "Trusted Care", text: "Thousands of patients served with consistency." },
-  { title: "Certified Team", text: "Clinicians with advanced clinical training." },
-  { title: "Hygiene First", text: "Strict sterilization and safety protocols." },
-  { title: "Proven Results", text: "Clear treatment plans focused on outcomes." },
-];
+const stepKeys = [
+  { title: "expertise.step1.title", text: "expertise.step1.text" },
+  { title: "expertise.step2.title", text: "expertise.step2.text" },
+  { title: "expertise.step3.title", text: "expertise.step3.text" },
+  { title: "expertise.step4.title", text: "expertise.step4.text" },
+] as const;
 
-export function ExpertiseSection() {
+export function ExpertiseSection({ t }: { t: TranslateFn }) {
   return (
-    <section className="bg-stone-50 py-24">
-      <SectionContainer className="space-y-10">
-        <div className="max-w-2xl space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
-            Expertise
-          </p>
+    <section className="bg-stone-50 py-20">
+      <SectionContainer className="space-y-8">
+        <div className="max-w-2xl space-y-2">
           <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">
-            Everything you expect from a modern dental clinic.
+            {t("expertise.title")}
           </h2>
-          <p className="text-zinc-600">
-            A premium standard of care built on clinical quality, transparent
-            communication, and comfort from first visit to follow-up.
-          </p>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {benefits.map((item) => (
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {stepKeys.map((item) => (
             <article
               key={item.title}
-              className="rounded-2xl border border-zinc-200/80 bg-white p-7 shadow-[0_1px_2px_rgba(16,24,40,0.06),0_8px_24px_rgba(16,24,40,0.06)]"
+              className="card-glass-shine min-w-0 rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-[0_1px_2px_rgba(16,24,40,0.06),0_8px_24px_rgba(16,24,40,0.06)]"
             >
-              <div className="mb-4 h-10 w-10 rounded-xl border border-amber-100 bg-amber-50" />
-              <h3 className="text-xl font-semibold tracking-tight text-zinc-900">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-6 text-zinc-600">{item.text}</p>
+              <div className="relative z-[2]">
+                <div className="mb-3 h-10 w-10 rounded-xl border border-amber-100 bg-amber-50" />
+                <h3 className="text-xl font-semibold tracking-tight text-zinc-900">
+                  {t(item.title)}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-600">{t(item.text)}</p>
+              </div>
             </article>
           ))}
         </div>
