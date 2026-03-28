@@ -39,3 +39,103 @@ body {
   color: var(--foreground);
   font-family: var(--font--main), var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+@keyframes header-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-image-rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .header-enter {
+    animation: header-fade 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hero-stagger > * {
+    animation: hero-rise 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hero-stagger > *:nth-child(1) {
+    animation-delay: 0.06s;
+  }
+  .hero-stagger > *:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+  .hero-stagger > *:nth-child(3) {
+    animation-delay: 0.18s;
+  }
+  .hero-stagger > *:nth-child(4) {
+    animation-delay: 0.24s;
+  }
+
+  .hero-image-enter {
+    animation: hero-image-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 0.14s;
+  }
+}
+
+/* Soft frosted-glass sheen sweep on hover (homepage cards) */
+.card-glass-shine {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.card-glass-shine::after {
+  content: "";
+  position: absolute;
+  inset: -45% -70%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.9;
+  filter: blur(14px);
+  mix-blend-mode: soft-light;
+  background: linear-gradient(
+    112deg,
+    hsla(0, 0%, 100%, 0) 0%,
+    hsla(210, 60%, 100%, 0.06) 32%,
+    hsla(210, 40%, 98%, 0.35) 46%,
+    hsla(0, 0%, 100%, 0.55) 50%,
+    hsla(210, 40%, 98%, 0.35) 54%,
+    hsla(210, 60%, 100%, 0.06) 68%,
+    hsla(0, 0%, 100%, 0) 100%
+  );
+  transform: translateX(-115%) skewX(-5deg) scaleY(1.15);
+  transition: transform 0.9s cubic-bezier(0.25, 0.9, 0.35, 1);
+}
+
+.card-glass-shine:hover::after,
+.card-glass-shine:focus-within::after {
+  transform: translateX(115%) skewX(-5deg) scaleY(1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-glass-shine::after {
+    display: none;
+  }
+}
