@@ -13,9 +13,6 @@ import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/get-dictionary";
 
-/** Ensure locale-specific copy is not served from a stale static shell after switching /sq ↔ /en. */
-export const dynamic = "force-dynamic";
-
 type PageProps = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
