@@ -20,12 +20,13 @@ export function Header({ t, locale }: { t: TranslateFn; locale: Locale }) {
           <div className="flex min-w-0 items-center gap-3 justify-self-start">
             <Link href={`/${locale}`} className="flex shrink-0 items-center">
               <Image
-                src="/amber-logo-instagram.jpg"
+                src="/amber-logo-mark.svg"
                 alt={t("header.logoAlt")}
                 width={156}
                 height={48}
                 className="h-10 w-auto object-contain"
                 priority
+                unoptimized
               />
             </Link>
 

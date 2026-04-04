@@ -30,12 +30,13 @@ export function HeroSection({ t }: { t: TranslateFn }) {
           <div className="min-w-0 lg:col-span-5 lg:justify-self-end">
             <div className="hero-image-enter relative h-[400px] w-full max-w-full overflow-hidden rounded-[32px] lg:h-[420px]">
               <Image
-                src="/images/dental-hero.jpg"
+                src="/clinic-hero.svg"
                 alt={t("hero.imageAlt")}
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
                 priority
+                unoptimized
               />
             </div>
           </div>

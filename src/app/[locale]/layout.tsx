@@ -1,3 +1,4 @@
+import { LocaleHtmlLang } from "@/components/LocaleHtmlLang";
 import { notFound } from "next/navigation";
 import { locales, isLocale, type Locale } from "@/lib/i18n/config";
 
@@ -14,5 +15,10 @@ export default async function LocaleLayout({
 }>) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return children;
+  return (
+    <>
+      <LocaleHtmlLang locale={locale} />
+      {children}
+    </>
+  );
 }

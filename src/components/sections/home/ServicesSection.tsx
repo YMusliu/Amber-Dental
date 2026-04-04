@@ -31,11 +31,12 @@ export function ServicesSection({ t }: { t: TranslateFn }) {
 
           <div className="relative min-h-[460px] md:min-h-[520px]">
             <Image
-              src="/images/dental-hero.jpg"
+              src="/clinic-hero.svg"
               alt={t("services.imageAlt")}
               fill
               className="object-cover"
               priority
+              unoptimized
             />
           </div>
 
@@ -57,28 +58,31 @@ export function ServicesSection({ t }: { t: TranslateFn }) {
 
             <div className="card-glass-shine relative h-[190px] overflow-hidden rounded-[24px] shadow-[0_12px_30px_rgba(15,23,42,0.14)]">
               <Image
-                src="/images/dental-hero.jpg"
+                src="/clinic-hero.svg"
                 alt={t("services.imageAlt")}
                 fill
                 className="relative z-[2] object-cover"
+                unoptimized
               />
             </div>
 
             <div className="card-glass-shine relative h-[190px] overflow-hidden rounded-[24px] shadow-[0_12px_30px_rgba(15,23,42,0.14)]">
               <Image
-                src="/images/dental-hero.jpg"
+                src="/clinic-hero.svg"
                 alt={t("services.imageAlt")}
                 fill
                 className="relative z-[2] object-cover"
+                unoptimized
               />
             </div>
 
             <div className="card-glass-shine relative h-[190px] overflow-hidden rounded-[24px] shadow-[0_12px_30px_rgba(15,23,42,0.14)]">
               <Image
-                src="/images/dental-hero.jpg"
+                src="/clinic-hero.svg"
                 alt={t("services.imageAlt")}
                 fill
                 className="relative z-[2] object-cover"
+                unoptimized
               />
             </div>
           </div>
