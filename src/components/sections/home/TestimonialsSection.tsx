@@ -40,7 +40,7 @@ export function TestimonialsSection() {
               className="min-w-0 rounded-2xl border border-zinc-200/80 bg-white p-7 shadow-[0_1px_2px_rgba(16,24,40,0.06),0_8px_24px_rgba(16,24,40,0.06)]"
             >
               <blockquote className="text-sm leading-7 text-zinc-700 sm:text-base">
-                "{item.quote}"
+                &ldquo;{item.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-4 text-sm font-medium text-zinc-900">
                 {item.name}

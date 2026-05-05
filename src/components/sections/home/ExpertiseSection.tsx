@@ -1,4 +1,5 @@
 import { SectionContainer } from "@/components/ui/SectionContainer";
+import Image from "next/image";
 import type { TranslateFn } from "@/lib/i18n/get-dictionary";
 
 const stepKeys = [
@@ -9,6 +10,47 @@ const stepKeys = [
 ] as const;
 
 export function ExpertiseSection({ t }: { t: TranslateFn }) {
+  const topImages = [
+    {
+      src: "/images/marketing/workflow/workflow-digital-scan.jpg",
+      alt: t("homeWorkflowImageDigitalScanAlt"),
+      label: t("homeWorkflowImageDigitalScanLabel"),
+    },
+    {
+      src: "/images/marketing/workflow/workflow-milling-production.jpg",
+      alt: t("homeWorkflowImageMillingAlt"),
+      label: t("homeWorkflowImageMillingLabel"),
+    },
+    {
+      src: "/images/marketing/workflow/workflow-finishing-staining.jpg",
+      alt: t("homeWorkflowImageFinishingAlt"),
+      label: t("homeWorkflowImageFinishingLabel"),
+    },
+  ];
+
+  const bottomImages = [
+    {
+      src: "/images/marketing/workflow/workflow-3d-printing.jpg",
+      alt: t("homeWorkflowImage3DPrintingAlt"),
+      label: t("homeWorkflowImage3DPrintingLabel"),
+    },
+    {
+      src: "/images/marketing/workflow/workflow-adaptation.jpg",
+      alt: t("homeWorkflowImageAdaptationAlt"),
+      label: t("homeWorkflowImageAdaptationLabel"),
+    },
+    {
+      src: "/images/marketing/workflow/workflow-quality-control.jpg",
+      alt: t("homeWorkflowImageQualityControlAlt"),
+      label: t("homeWorkflowImageQualityControlLabel"),
+    },
+    {
+      src: "/images/marketing/workflow/workflow-packing-delivery.jpg",
+      alt: t("homeWorkflowImagePackingAlt"),
+      label: t("homeWorkflowImagePackingLabel"),
+    },
+  ];
+
   return (
     <section className="bg-stone-50 py-20">
       <SectionContainer className="space-y-8">
@@ -17,6 +59,20 @@ export function ExpertiseSection({ t }: { t: TranslateFn }) {
             {t("expertise.title")}
           </h2>
         </div>
+
+        <div className="space-y-3 sm:space-y-4">
+          <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
+            {topImages.map((image) => (
+              <WorkflowTile key={image.src} image={image} aspect="aspect-[4/3]" />
+            ))}
+          </div>
+          <div className="grid gap-3 sm:gap-4 md:grid-cols-4">
+            {bottomImages.map((image) => (
+              <WorkflowTile key={image.src} image={image} aspect="aspect-[4/3]" />
+            ))}
+          </div>
+        </div>
+
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {stepKeys.map((item) => (
             <article
@@ -35,5 +91,28 @@ export function ExpertiseSection({ t }: { t: TranslateFn }) {
         </div>
       </SectionContainer>
     </section>
+  );
+}
+
+type WorkflowImage = { src: string; alt: string; label: string };
+
+function WorkflowTile({ image, aspect }: { image: WorkflowImage; aspect: string }) {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-[24px] border border-zinc-200 bg-stone-100 shadow-[0_8px_24px_rgba(15,23,42,0.06)] ${aspect}`}
+    >
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+        quality={90}
+        className="object-cover"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-black/0" />
+      <div className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-900 shadow-sm backdrop-blur">
+        {image.label}
+      </div>
+    </div>
   );
 }
