@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { AboutVisualSection } from "@/components/sections/home/AboutVisualSection";
+import { AboutDetailsSection } from "@/components/sections/home/AboutDetailsSection";
 import { ContactSection } from "@/components/sections/home/ContactSection";
 import { ExpertiseSection } from "@/components/sections/home/ExpertiseSection";
 import { HeroSection } from "@/components/sections/home/HeroSection";
+import { MissionSection } from "@/components/sections/home/MissionSection";
 import { PricingPreviewSection } from "@/components/sections/home/PricingPreviewSection";
-import { QuickInfoSection } from "@/components/sections/home/QuickInfoSection";
 import { ServicesSection } from "@/components/sections/home/ServicesSection";
 import { Reveal } from "@/components/ui/Reveal";
 import { notFound } from "next/navigation";
@@ -37,7 +37,7 @@ export default async function HomePage({ params }: PageProps) {
       <main className="overflow-x-hidden">
         <HeroSection t={t} />
         <Reveal>
-          <QuickInfoSection t={t} />
+          <AboutDetailsSection t={t} />
         </Reveal>
         <Reveal>
           <ExpertiseSection t={t} />
@@ -49,7 +49,7 @@ export default async function HomePage({ params }: PageProps) {
           <PricingPreviewSection t={t} />
         </Reveal>
         <Reveal>
-          <AboutVisualSection t={t} />
+          <MissionSection t={t} />
         </Reveal>
         <Reveal>
           <ContactSection t={t} />
