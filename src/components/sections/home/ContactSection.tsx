@@ -3,81 +3,70 @@ import type { TranslateFn } from "@/lib/i18n/get-dictionary";
 
 export function ContactSection({ t }: { t: TranslateFn }) {
   return (
-    <section id="contact" className="bg-white py-20">
+    <section id="contact" className="bg-white py-16 sm:py-20">
       <SectionContainer>
-        <div className="card-glass-shine grid gap-6 rounded-3xl border border-zinc-200 bg-stone-50 p-5 sm:p-7 lg:grid-cols-3">
-          <div className="relative z-[2] min-w-0 space-y-3 lg:col-span-2">
+        <div className="card-glass-shine rounded-[28px] border border-zinc-200 bg-[#fbfaf4] p-6 sm:p-8 lg:grid lg:grid-cols-[1.5fr_0.9fr] lg:gap-8">
+          <div className="relative z-[2] min-w-0 space-y-4">
             <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">
-              {t("contact.title")}
+              {t("homeContactTitle")}
             </h2>
             <fieldset className="grid gap-3 sm:grid-cols-2">
-              <legend className="sr-only">{t("contact.formLegend")}</legend>
+              <legend className="sr-only">{t("homeContactFormLegend")}</legend>
               <input
                 className="rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm"
-                placeholder=""
+                placeholder={t("homeContactNameLabel")}
               />
               <input
                 className="rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm"
-                placeholder=""
-              />
-              <input
-                className="rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm sm:col-span-2"
-                placeholder=""
+                placeholder={t("homeContactEmailLabel")}
               />
               <textarea
-                className="min-h-28 rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm sm:col-span-2"
-                placeholder=""
+                className="min-h-[120px] rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm sm:col-span-2"
+                placeholder={t("homeContactNotesLabel")}
               />
               <button
                 type="submit"
                 className="rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-white sm:col-span-2 sm:w-fit"
               >
-                {t("contact.submitCta")}
+                {t("homeContactSubmitCta")}
               </button>
             </fieldset>
           </div>
-          <aside className="relative z-[2] min-w-0 space-y-3 border-t border-zinc-200 pt-5 text-sm text-zinc-700 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
-            <p className="font-semibold text-zinc-900">
-              {t("contact.aside.logisticsTitle")}
+
+          <aside className="relative z-[2] mt-10 min-w-0 space-y-2 border-t border-zinc-200 pt-8 text-sm leading-6 text-zinc-700 lg:mt-0 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+            <p className="font-semibold uppercase tracking-[0.08em] text-zinc-900">
+              {t("homeContactLogisticsTitle")}
             </p>
             <p className="break-words">
-              <span className="font-medium text-zinc-800">
-                {t("contact.aside.productionLabel")}
-              </span>{" "}
-              {t("contact.aside.productionBody")}
+              <span className="font-semibold text-zinc-900">{t("homeContactProductionLabel")}</span>{" "}
+              {t("homeContactProductionBody")}
             </p>
             <p className="break-words">
-              <span className="font-medium text-zinc-800">
-                {t("contact.aside.transportLabel")}
-              </span>{" "}
-              {t("contact.aside.transportBody")}
+              <span className="font-semibold text-zinc-900">{t("homeContactTransportLabel")}</span>{" "}
+              {t("homeContactTransportBody")}
             </p>
             <p className="break-words">
-              <span className="font-medium text-zinc-800">
-                {t("contact.aside.zirconiaLabel")}
-              </span>{" "}
-              {t("contact.aside.zirconiaBody")}
+              <span className="font-semibold text-zinc-900">{t("homeContactZirconiaLabel")}</span>{" "}
+              {t("homeContactZirconiaBody")}
             </p>
             <p className="break-words">
-              <span className="font-medium text-zinc-800">
-                {t("contact.aside.alignersLabel")}
-              </span>{" "}
-              {t("contact.aside.alignersBody")}
+              <span className="font-semibold text-zinc-900">{t("homeContactAlignersLabel")}</span>{" "}
+              {t("homeContactAlignersBody")}
             </p>
             <p className="font-semibold text-zinc-900">
-              {t("contact.aside.billingTitle")}
+              {t("homeContactInvoicingTitle")}
             </p>
-            <p className="break-words">{t("contact.aside.billingBody")}</p>
-            <p className="break-words">{t("contact.aside.secureLine")}</p>
-            <p className="break-words">{t("contact.aside.paymentAgreementLine")}</p>
+            <p className="break-words">{t("homeContactInvoicingBody")}</p>
+            <p className="break-words">{t("homeContactSecurityLine")}</p>
+            <p className="break-words">{t("homeContactPaymentLine")}</p>
             <p className="font-semibold text-zinc-900">
-              {t("contact.aside.channelsTitle")}
+              {t("homeContactChannelsTitle")}
             </p>
-            <p className="break-words">{t("contact.aside.channelsBody")}</p>
+            <p className="break-words">{t("homeContactChannelsBody")}</p>
             <p className="font-semibold text-zinc-900">
-              {t("contact.aside.locationTitle")}
+              {t("homeContactLocationTitle")}
             </p>
-            <p>{t("contact.aside.locationBody")}</p>
+            <p>{t("homeContactLocationBody")}</p>
           </aside>
         </div>
       </SectionContainer>
