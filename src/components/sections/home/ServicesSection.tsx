@@ -1,9 +1,22 @@
+import Image from "next/image";
 import type { TranslateFn } from "@/lib/i18n/get-dictionary";
 
 const cardDefs = [
-  { id: "1" },
-  { id: "2" },
-  { id: "3" },
+  {
+    id: "1",
+    imageSrc: "/images/marketing/services/service-orthobox.jpg",
+    imageAltKey: "homeServicesCard1ImageAlt",
+  },
+  {
+    id: "2",
+    imageSrc: "/images/marketing/services/service-zirconia.jpg",
+    imageAltKey: "homeServicesCard2ImageAlt",
+  },
+  {
+    id: "3",
+    imageSrc: "/images/marketing/services/service-3d.jpg",
+    imageAltKey: "homeServicesCard3ImageAlt",
+  },
 ] as const;
 
 export function ServicesSection({ t }: { t: TranslateFn }) {
@@ -11,9 +24,10 @@ export function ServicesSection({ t }: { t: TranslateFn }) {
     const n = i + 1;
     return {
       id: def.id,
+      imageSrc: def.imageSrc,
+      imageAlt: t(def.imageAltKey),
       title: t(`homeServicesCard${n}Title`),
       description: t(`homeServicesCard${n}Description`),
-      icon: "🦷" as const,
     };
   });
 
@@ -40,16 +54,22 @@ export function ServicesSection({ t }: { t: TranslateFn }) {
           {services.map((service) => (
             <article
               key={service.id}
-              className="group flex min-h-[300px] flex-col rounded-[28px] border border-zinc-200 bg-zinc-50 p-6 shadow-sm transition-colors duration-300 hover:border-[#2f66dc] hover:bg-[#2f66dc] hover:shadow-xl sm:p-8"
+              className="group flex min-h-[380px] flex-col overflow-hidden rounded-[28px] border border-zinc-200 bg-zinc-50 shadow-sm transition-colors duration-300 hover:border-[#2f66dc] hover:bg-[#2f66dc] hover:shadow-xl"
             >
-              <div
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-2xl text-[#2f66dc] shadow-sm transition-opacity duration-300 group-hover:opacity-0"
-              >
-                {service.icon}
+              <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-zinc-200">
+                <Image
+                  src={service.imageSrc}
+                  alt={service.imageAlt}
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  quality={90}
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
 
-              <div className="mt-8">
-                <h3 className="text-3xl font-semibold leading-tight tracking-tight text-zinc-950 transition-colors duration-300 group-hover:text-white">
+              <div className="flex flex-1 flex-col p-6 sm:p-8">
+                <h3 className="text-2xl font-semibold leading-tight tracking-tight text-zinc-950 transition-colors duration-300 group-hover:text-white sm:text-3xl">
                   {service.title}
                 </h3>
                 <p className="mt-4 max-h-0 overflow-hidden text-base leading-7 text-zinc-600 opacity-0 transition-all duration-300 group-hover:max-h-40 group-hover:opacity-100 group-hover:text-white/90">
