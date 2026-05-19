@@ -17,9 +17,9 @@ export function ExpertiseSection({ t }: { t: TranslateFn }) {
       label: t("homeWorkflowImageDigitalScanLabel"),
     },
     {
-      src: "/images/marketing/workflow/workflow-milling-production.jpg",
-      alt: t("homeWorkflowImageMillingAlt"),
-      label: t("homeWorkflowImageMillingLabel"),
+      src: "/images/marketing/workflow/workflow-3d-printing.jpg",
+      alt: t("homeWorkflowImage3DPrintingAlt"),
+      label: t("homeWorkflowImage3DPrintingLabel"),
     },
     {
       src: "/images/marketing/workflow/workflow-finishing-staining.jpg",
@@ -30,11 +30,6 @@ export function ExpertiseSection({ t }: { t: TranslateFn }) {
 
   const bottomImages = [
     {
-      src: "/images/marketing/workflow/workflow-3d-printing.jpg",
-      alt: t("homeWorkflowImage3DPrintingAlt"),
-      label: t("homeWorkflowImage3DPrintingLabel"),
-    },
-    {
       src: "/images/marketing/workflow/workflow-adaptation.jpg",
       alt: t("homeWorkflowImageAdaptationAlt"),
       label: t("homeWorkflowImageAdaptationLabel"),
@@ -43,11 +38,13 @@ export function ExpertiseSection({ t }: { t: TranslateFn }) {
       src: "/images/marketing/workflow/workflow-quality-control.jpg",
       alt: t("homeWorkflowImageQualityControlAlt"),
       label: t("homeWorkflowImageQualityControlLabel"),
+      showCheckIcon: true,
     },
     {
       src: "/images/marketing/workflow/workflow-packing-delivery.jpg",
       alt: t("homeWorkflowImagePackingAlt"),
       label: t("homeWorkflowImagePackingLabel"),
+      imageClassName: "object-cover object-center",
     },
   ];
 
@@ -66,7 +63,7 @@ export function ExpertiseSection({ t }: { t: TranslateFn }) {
               <WorkflowTile key={image.src} image={image} aspect="aspect-[4/3]" />
             ))}
           </div>
-          <div className="grid gap-3 sm:gap-4 md:grid-cols-4">
+          <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
             {bottomImages.map((image) => (
               <WorkflowTile key={image.src} image={image} aspect="aspect-[4/3]" />
             ))}
@@ -94,12 +91,39 @@ export function ExpertiseSection({ t }: { t: TranslateFn }) {
   );
 }
 
-type WorkflowImage = { src: string; alt: string; label: string };
+type WorkflowImage = {
+  src: string;
+  alt: string;
+  label: string;
+  showCheckIcon?: boolean;
+  imageClassName?: string;
+};
+
+function WorkflowCheckIcon() {
+  return (
+    <span
+      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500 shadow-sm ring-2 ring-white/80"
+      aria-hidden
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        className="h-3 w-3 text-white"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M5 13l4 4L19 7" />
+      </svg>
+    </span>
+  );
+}
 
 function WorkflowTile({ image, aspect }: { image: WorkflowImage; aspect: string }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-[24px] border border-zinc-200 bg-stone-100 shadow-[0_8px_24px_rgba(15,23,42,0.06)] ${aspect}`}
+      className={`relative overflow-hidden rounded-[24px] border border-zinc-200/90 bg-stone-100 shadow-[0_8px_28px_rgba(15,23,42,0.08)] ${aspect}`}
     >
       <Image
         src={image.src}
@@ -107,11 +131,12 @@ function WorkflowTile({ image, aspect }: { image: WorkflowImage; aspect: string 
         fill
         sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
         quality={90}
-        className="object-cover"
+        className={image.imageClassName ?? "object-cover"}
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-black/0" />
-      <div className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-900 shadow-sm backdrop-blur">
-        {image.label}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-black/0" />
+      <div className="absolute left-3 top-3 flex max-w-[calc(100%-1.5rem)] items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-900 shadow-sm backdrop-blur">
+        {image.showCheckIcon ? <WorkflowCheckIcon /> : null}
+        <span className="truncate">{image.label}</span>
       </div>
     </div>
   );

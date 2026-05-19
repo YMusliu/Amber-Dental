@@ -6,8 +6,8 @@ export function MissionSection({ t }: { t: TranslateFn }) {
   return (
     <section id="mission" className="bg-white py-20">
       <SectionContainer>
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
-          <div className="space-y-4">
+        <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:items-center lg:gap-12">
+          <div className="space-y-4 lg:max-w-xl">
             <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">
               {t("homeMissionTitle")}
             </h2>
@@ -16,37 +16,16 @@ export function MissionSection({ t }: { t: TranslateFn }) {
             <p className="text-base leading-7 text-zinc-700">{t("homeMissionParagraph3")}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="relative h-56 overflow-hidden rounded-2xl border border-zinc-200 bg-stone-100 shadow-[0_8px_24px_rgba(15,23,42,0.06)] sm:h-64">
-              <Image
-                src="/images/marketing/mission/mission-quality.jpg"
-                alt={t("homeMissionImage1Alt")}
-                fill
-                sizes="(min-width: 1024px) 25vw, 50vw"
-                quality={90}
-                className="object-cover"
-              />
-            </div>
-            <div className="relative h-40 overflow-hidden rounded-2xl border border-zinc-200 bg-stone-100 shadow-[0_8px_24px_rgba(15,23,42,0.06)] sm:h-48">
-              <Image
-                src="/images/marketing/mission/mission-precision.jpg"
-                alt={t("homeMissionImage2Alt")}
-                fill
-                sizes="(min-width: 1024px) 25vw, 50vw"
-                quality={90}
-                className="object-cover"
-              />
-            </div>
-            <div className="relative col-span-2 h-56 overflow-hidden rounded-2xl border border-zinc-200 bg-stone-100 shadow-[0_8px_24px_rgba(15,23,42,0.06)] sm:h-64">
-              <Image
-                src="/images/marketing/mission/mission-partnership.jpg"
-                alt={t("homeMissionImage3Alt")}
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                quality={90}
-                className="object-cover"
-              />
-            </div>
+          <div className="relative aspect-[1024/379] w-full min-h-[200px] overflow-hidden rounded-2xl border border-zinc-200 bg-sky-50 shadow-[0_12px_32px_rgba(15,23,42,0.08)] sm:min-h-[240px] lg:min-h-0">
+            <Image
+              src="/images/marketing/mission/mission-banner.jpg"
+              alt={t("homeMissionBannerAlt")}
+              fill
+              sizes="(min-width: 1024px) 58vw, 100vw"
+              quality={90}
+              className="object-contain"
+              priority
+            />
           </div>
         </div>
       </SectionContainer>
