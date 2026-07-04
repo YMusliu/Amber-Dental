@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // The public website may ONLY create email-trigger documents, and only
+    // ones addressed to the lab itself. This prevents the project from being
+    // abused as an open relay to send mail to arbitrary recipients.
+    match /mail/{docId} {
+      allow create: if isValidContactMessage();
+      allow read, update, delete: if false;
+    }
+
+    // Lock everything else down by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidContactMessage() {
+      let d = request.resource.data;
+      return d.to == ['amberdental.lab@gmail.com']
+        && d.source == 'website-contact-form'
+        && d.name is string && d.name.size() > 0 && d.name.size() <= 200
+        && d.email is string && d.email.size() <= 320
+        && d.notes is string && d.notes.size() > 0 && d.notes.size() <= 5000
+        && d.message.subject is string
+        && d.message.text is string && d.message.text.size() <= 6000;
+    }
+  }
+}

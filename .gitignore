@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local build artifact, too large for GitHub
+/amber-dental-out.zip
+
+# presentation PDFs too heavy for GitHub (light ENG version is tracked)
+/public/documents/ALB_AmberLab.pdf
+/public/documents/DE_AmberLab.pdf
+/docs/ALB_AmberLab.pdf

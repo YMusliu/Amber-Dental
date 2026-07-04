@@ -3,6 +3,8 @@ import Image from "next/image";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { locales, type Locale } from "@/lib/i18n/config";
 import type { TranslateFn } from "@/lib/i18n/get-dictionary";
+import { getPresentationHref } from "@/lib/presentation";
+import { MobileMenu } from "./MobileMenu";
 
 const navKeys = [
   { key: "header.home", href: "#home" },
@@ -13,6 +15,8 @@ const navKeys = [
 ] as const;
 
 export function Header({ t, locale }: { t: TranslateFn; locale: Locale }) {
+  const presentationHref = getPresentationHref(locale);
+  const navItems = navKeys.map((n) => ({ label: t(n.key), href: n.href }));
   return (
     <header className="header-enter sticky top-0 z-30 border-b border-zinc-200/70 bg-white/88 backdrop-blur-md">
       <SectionContainer className="py-3">
@@ -37,9 +41,9 @@ export function Header({ t, locale }: { t: TranslateFn; locale: Locale }) {
 
           <nav
             aria-label={t("header.navAria")}
-            className="min-w-0 max-w-[min(100vw-8rem,100%)] justify-self-center md:max-w-none"
+            className="hidden min-w-0 max-w-[min(100vw-8rem,100%)] justify-self-center md:block md:max-w-none"
           >
-            <ul className="flex items-center gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-6 md:gap-10 md:overflow-visible md:pb-0 [&::-webkit-scrollbar]:hidden">
+            <ul className="flex items-center gap-3 sm:gap-6 md:gap-10">
               {navKeys.map((link) => (
                 <li key={link.key} className="shrink-0">
                   <a
@@ -53,10 +57,36 @@ export function Header({ t, locale }: { t: TranslateFn; locale: Locale }) {
             </ul>
           </nav>
 
-          <div className="flex shrink-0 items-center justify-end gap-3 justify-self-end">
-            <button className="rounded-xl bg-zinc-950 px-3 py-2 text-xs font-medium text-white transition-colors duration-200 hover:bg-zinc-800 sm:px-5 sm:py-2.5 sm:text-[14px]">
+          <div className="flex shrink-0 items-center justify-end gap-2 justify-self-end sm:gap-3">
+            <a
+              href={presentationHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("header.presentationAria")}
+              className="hidden items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3 py-2 text-xs font-medium text-zinc-800 transition-colors duration-200 hover:border-zinc-400 hover:bg-zinc-50 md:inline-flex md:px-4 md:py-2.5 md:text-[14px]"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              {t("header.presentation")}
+            </a>
+            <a
+              href="#contact"
+              className="hidden rounded-xl bg-zinc-950 px-3 py-2 text-xs font-medium text-white transition-colors duration-200 hover:bg-zinc-800 md:inline-flex md:px-5 md:py-2.5 md:text-[14px]"
+            >
               {t("header.cta")}
-            </button>
+            </a>
             <div
               className="flex shrink-0 items-center rounded-lg border border-zinc-200 bg-white p-0.5 text-[11px] font-semibold uppercase tracking-wide"
               role="group"
@@ -78,6 +108,16 @@ export function Header({ t, locale }: { t: TranslateFn; locale: Locale }) {
                 </Link>
               ))}
             </div>
+            <MobileMenu
+              navItems={navItems}
+              presentationHref={presentationHref}
+              presentationLabel={t("header.presentation")}
+              presentationAria={t("header.presentationAria")}
+              ctaLabel={t("header.cta")}
+              navAria={t("header.navAria")}
+              openLabel={t("header.menuOpen")}
+              closeLabel={t("header.menuClose")}
+            />
           </div>
         </div>
       </SectionContainer>

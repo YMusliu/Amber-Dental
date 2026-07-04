@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { defaultLocale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/get-dictionary";
@@ -42,6 +43,20 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
+      {/* Google tag (gtag.js) */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=AW-18248809110"
+        strategy="afterInteractive"
+      />
+      <Script id="google-gtag" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-18248809110');
+          gtag('config', 'G-78D0ZF5C6X');
+        `}
+      </Script>
     </html>
   );
 }

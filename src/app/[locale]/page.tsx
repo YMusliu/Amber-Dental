@@ -35,7 +35,7 @@ export default async function HomePage({ params }: PageProps) {
     <div className="min-h-screen bg-white text-zinc-900">
       <Header t={t} locale={locale} />
       <main className="overflow-x-hidden">
-        <HeroSection t={t} />
+        <HeroSection t={t} locale={locale} />
         <Reveal>
           <AboutDetailsSection t={t} />
         </Reveal>

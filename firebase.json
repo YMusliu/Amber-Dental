@@ -1,5 +1,9 @@
 {
+  "firestore": {
+    "rules": "firestore.rules"
+  },
   "hosting": {
+    "site": "amber-dental-site",
     "public": "out",
     "ignore": [
       "firebase.json",
@@ -8,10 +12,11 @@
     ],
     "cleanUrls": true,
     "trailingSlash": true,
-    "rewrites": [
+    "redirects": [
       {
         "source": "/",
-        "destination": "/sq/index.html"
+        "destination": "/sq/",
+        "type": 301
       }
     ]
   }
